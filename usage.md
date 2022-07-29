@@ -1,3 +1,4 @@
+
 # PX4 Gazebo Simulation Guideline 
 
 ## What do we want ? 
@@ -23,6 +24,11 @@
 > - RF2: run local gazebo world: https://docs.px4.io/main/en/simulation/gazebo.html#set_world
 
 In Px3 gazebo simulation, all world files are saved in `Tool/sitl_gazebo/worlds/xxx`, we can modify the default world file or specify our customized world filt by setting environment variable  ` PX4_SITL_WORLD` , see RF2 
+
+```bash 
+    # an example 
+    make px4_sitl gazebo PX4_SITL_WORLD="./your/path/to/world"
+```
 
 #### Set world location 
 
