@@ -1,6 +1,6 @@
-# px4sim: PX4 flight simulation with MAVROS, QGC, Gazebo
+# CMOS: Containerized Mobile Sensing Simulation
 
-This repo contains instructions and demo code for PX4 flight simulation in ROS Gazebo using MAVROS, QGC. A simple offboard control example is provided. To deploy this framework in container, [click here](./docker-ros/install.md).
+This repo contains instructions and demo code for PX4 flight simulation in our containerized environment. A simple offboard control example is provided. To deploy this framework in container, [click here](./docker-ros/install.md).
 
 ## Software installation and configuration
 

@@ -1,42 +1,45 @@
+# PX4 Gazebo Simulation Guideline
 
-# PX4 Gazebo Simulation Guideline 
+## What do we want ?
 
-## What do we want ? 
+### Input
 
-### Input 
-1. a customized gazebo world 
-2. a customized drone sdf model with cam 
-3. a routine plan file 
+1. a customized gazebo world
+2. a customized drone sdf model with cam or other sensors
+3. a mission route for mobile platform
 
-### After running the simulation 
+### After running the simulation
 
-### Output 
-1. Video stream 
+### Output
 
-## Run code 
+1. Labeled video stream
+2. Labeled RGB image
 
-### World 
+## Run code
 
-#### Import world on px4-gazebo 
+### World
+
+#### Import world on px4-gazebo
 
 > Referrence:
-> - RF1: default gazebo world in px4 sim: https://docs.px4.io/main/en/simulation/gazebo_worlds.html 
+>
+> - RF1: default gazebo world in px4 sim: https://docs.px4.io/main/en/simulation/gazebo_worlds.html
 > - RF2: run local gazebo world: https://docs.px4.io/main/en/simulation/gazebo.html#set_world
 
-In Px3 gazebo simulation, all world files are saved in `Tool/sitl_gazebo/worlds/xxx`, we can modify the default world file or specify our customized world filt by setting environment variable  ` PX4_SITL_WORLD` , see RF2 
+In Px3 gazebo simulation, all world files are saved in `Tool/sitl_gazebo/worlds/xxx`, we can modify the default world file or specify our customized world filt by setting environment variable ` PX4_SITL_WORLD` , see RF2
 
-```bash 
-    # an example 
+```bash
+    # an example
     make px4_sitl gazebo PX4_SITL_WORLD="./your/path/to/world"
 ```
 
-#### Set world location 
+#### Set world location
 
 > see https://docs.px4.io/main/en/simulation/gazebo.html#set-world-location
 
+### Drone model
 
-### Drone model 
-> see ref: https://discuss.px4.io/t/create-custom-model-for-sitl/6700/2 
+> see ref: https://discuss.px4.io/t/create-custom-model-for-sitl/6700/2
 
 The steps I took for creating a custom Gazebo model and PX4 SITL airframe with the adjusted gains:
 
@@ -54,17 +57,18 @@ A couple of things to keep in mind:
 - With the larger vehicle, tweak the motor values (but you have done this already)
 - If the quad is unstable, it is probably due to bad controller gains. Tweak them for the larger vehicle.
 
-### Launch the simulation 
+### Launch the simulation
 
-In your Firmware path, run: `make px4_sitl gazebo[_vehicle-model][_debugModel][_wroldName]`, use `VERBOSE_SIM=1` to see the logs. 
+In your Firmware path, run: `make px4_sitl gazebo[_vehicle-model][_debugModel][_wroldName]`, use `VERBOSE_SIM=1` to see the logs.
 
-### Set your drone route 
+### Set your drone route
 
 > see https://github.com/Vieloooo/px4sim
 
-### Video stream 
+### Video stream
 
-For video provided typhonn_h480, use script below to get video stream.  
+For video provided typhonn_h480, use script below to get video stream.
+
 ```
-gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false 
+gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
 ```
