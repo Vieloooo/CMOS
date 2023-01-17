@@ -15,7 +15,7 @@ This repo contains instructions and demo code for PX4 flight simulation in our c
   - `sudo usermod -a -G dialout $USER`
   - `sudo apt-get remove modemmanager -y`
   - Manually download QGC appimage
-    - **Alert** please install version:v4.1.4 (https://github.com/mavlink/qgroundcontrol/releases/download/v4.1.4/QGroundControl.AppImage) or lower, higher version may need to use qt5.15, which is not provided by ubuntu 20.04 LTS offically(5.12 instead)
+    - **Alert** please install version:v4.1.5 (https://github.com/mavlink/qgroundcontrol/releases/download/v4.1.4/QGroundControl.AppImage) or lower, higher version may need to use qt5.15, which is not provided by ubuntu 20.04 LTS offically(5.12 instead), and QGC-v4.1.4 **DONOT** work on ubuntu 18.04, use 4.1.5 please
     - If you wanna use latest QGC, please upgrade your QT manually from qt official site and update env
 - PX4 for gazebo
   - `sudo apt install libgazebo9-dev`
